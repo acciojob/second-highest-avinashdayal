@@ -1,47 +1,45 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
 	<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>	
 	<script>
 		function secondHighest(arr) {
-			//Write your code here
-             
-              int first largest number = Integer.MIN_VALUE;
-              int second largest number = Integer.MIN_VALUE;
-               for (int num : arr){
-               if(num > firstLargest){
-                   secondLargest = firstLargest;
-                   firstLargest = num ;
-}else if(num>secondLargest && num != firstLargest){
- secondLargest = num;
-}
-return secondLargest;
+			// Convert all elements to numbers
+			arr = arr.map(Number);
 
+			// If array is empty or has only one element
+			if (arr.length < 2) return -Infinity;
 
-}
-			
-			
+			let firstLargest = -Infinity;
+			let secondLargest = -Infinity;
+
+			for (let num of arr) {
+				if (num > firstLargest) {
+					secondLargest = firstLargest;
+					firstLargest = num;
+				} else if (num > secondLargest && num < firstLargest) {
+					secondLargest = num;
+				}
+			}
+
+			// If secondLargest not found (all elements same)
+			if (secondLargest === -Infinity) return -Infinity;
+
+			return secondLargest;
 		}
 
 		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
+			let n = prompt("Enter the number of elements");
+			let arr = [];
+			for (let i = 0; i < n; i++) {
+				arr[i] = prompt("Enter element " + (i + 1));
 			}
 			alert(secondHighest(arr));
 		}
+
 		Main();
 	</script>
-
-    <script type="text/javascript" src="./script.js">
-</script>
-
 </body>
-
 </html>
